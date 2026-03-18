@@ -1,7 +1,5 @@
-# Utilise l'image officielle PHP + Apache
 FROM php:8.2-apache
 
-# Installer les dépendances nécessaires pour PostgreSQL et activer modules
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -15,15 +13,12 @@ RUN apt-get update && apt-get install -y \
     zip \
     opcache
 
-# Servir le front controller depuis /public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Copier un php.ini personnalisé si besoin (monté via docker-compose)
-# WORKDIR /var/www/html
+WORKDIR /var/www/html
 
-# Permettre à Apache d'écrire sur le dossier (utile pour uploads / sessions)
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
