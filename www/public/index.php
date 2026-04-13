@@ -14,6 +14,27 @@ if ($path !== '/') {
 }
 
 $handler = $routes[$method][$path] ?? null;
+$params = [];
+
+if ($handler === null) {
+	foreach ($routes[$method] ?? [] as $route => $routeHandler) {
+		if (strpos($route, '{') === false) {
+			continue;
+		}
+
+		$pattern = preg_replace('/\{[^\/]+\}/', '([^\/]+)', $route);
+		$pattern = '#^' . $pattern . '$#';
+
+		if (preg_match($pattern, $path, $matches)) {
+			$handler = $routeHandler;
+			$params = array_values(array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY));
+			if ($params === []) {
+				$params = array_slice($matches, 1);
+			}
+			break;
+		}
+	}
+}
 
 if ($handler === null) {
 	if ($path === '/') {
@@ -37,7 +58,7 @@ if ($handler === null) {
 }
 
 if (is_callable($handler)) {
-	$result = $handler();
+	$result = $handler(...$params);
 	if (is_string($result)) {
 		echo $result;
 	}

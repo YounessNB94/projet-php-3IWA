@@ -9,7 +9,7 @@ services:
     ports:
       - "80:80"               # http://localhost
     volumes:
-      - ./:/var/www/html:cached
+      - ./www:/var/www/html:cached
       - ./php.ini:/usr/local/etc/php/conf.d/custom.ini:ro
     environment:
       - APACHE_LOG_DIR=/var/log/apache2
