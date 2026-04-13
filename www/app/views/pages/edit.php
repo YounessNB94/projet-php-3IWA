@@ -16,22 +16,12 @@ $page = $page ?? [];
 <head>
     <meta charset="UTF-8">
     <title>Modifier une page</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    <nav>
-        <a href="/">Accueil</a> |
-        <a href="/pages">Pages</a> |
-        <a href="/admin">Admin</a>
-        <?php if ($isLoggedIn) : ?>
-            | <a href="/logout">Deconnexion</a>
-            <span style="float:right;">Connecte</span>
-        <?php else : ?>
-            | <a href="/login">Connexion</a>
-            | <a href="/register">Inscription</a>
-        <?php endif; ?>
-    </nav>
-    <hr>
-    <h1>Modifier une page</h1>
+<body class="theme-contrast">
+    <?php require __DIR__ . '/../partials/header.php'; ?>
+    <main class="layout-container">
+        <h1>Modifier une page</h1>
 
     <?php if (!empty($errors)) : ?>
         <ul>
@@ -57,6 +47,8 @@ $page = $page ?? [];
         <button type="submit">Mettre a jour</button>
     </form>
 
-    <p><a href="/pages">Retour</a></p>
+        <p><a href="/pages">Retour</a></p>
+    </main>
+    <script src="/js/app.js"></script>
 </body>
 </html>

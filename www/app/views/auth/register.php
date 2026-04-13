@@ -16,22 +16,13 @@ $old = $old ?? [];
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    <nav>
-        <a href="/">Accueil</a> |
-        <a href="/pages">Pages</a> |
-        <a href="/admin">Admin</a>
-        <?php if ($isLoggedIn) : ?>
-            | <a href="/logout">Deconnexion</a>
-            <span style="float:right;">Connecte</span>
-        <?php else : ?>
-            | <a href="/login">Connexion</a>
-            | <a href="/register">Inscription</a>
-        <?php endif; ?>
-    </nav>
-    <hr>
-    <h1>Inscription</h1>
+<body class="theme-contrast">
+    <?php require __DIR__ . '/../partials/header.php'; ?>
+    <main class="layout-container">
+        <section class="form-card">
+            <h1>Inscription</h1>
 
     <?php if (!empty($errors)) : ?>
         <ul>
@@ -41,22 +32,25 @@ $old = $old ?? [];
         </ul>
     <?php endif; ?>
 
-    <form method="post" action="/register">
-        <label for="name">Nom</label>
-        <input type="text" id="name" name="name" value="<?= htmlspecialchars($old['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
+        <form method="post" action="/register" class="form">
+            <label for="name">Nom</label>
+            <input class="input" type="text" id="name" name="name" value="<?= htmlspecialchars($old['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
+            <label for="email">Email</label>
+            <input class="input" type="email" id="email" name="email" value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" required>
+            <label for="password">Mot de passe</label>
+            <input class="input" type="password" id="password" name="password" required>
 
-        <label for="password_confirm">Confirmer le mot de passe</label>
-        <input type="password" id="password_confirm" name="password_confirm" required>
+            <label for="password_confirm">Confirmer le mot de passe</label>
+            <input class="input" type="password" id="password_confirm" name="password_confirm" required>
 
-        <button type="submit">S'inscrire</button>
-    </form>
+            <button class="button button--primary" type="submit">S'inscrire</button>
+        </form>
 
-    <p><a href="/login">J'ai deja un compte</a></p>
+        <p><a href="/login">J'ai deja un compte</a></p>
+        </section>
+    </main>
+    <script src="/js/app.js"></script>
 </body>
 </html>

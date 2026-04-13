@@ -21,6 +21,9 @@ return [
 		'/page/{slug}' => function (string $slug): void {
 			(new PageController())->showBySlug($slug);
 		},
+		'/styleguide' => function (): void {
+			require __DIR__ . '/../app/views/front/styleguide.php';
+		},
 	],
 	'POST' => [
 		'/pages/store' => function (): void {

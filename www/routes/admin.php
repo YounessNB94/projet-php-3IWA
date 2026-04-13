@@ -13,6 +13,16 @@ return [
 			RoleMiddleware::ensureRole(['admin']);
 			(new AdminController())->dashboard();
 		},
+		'/admin/pages' => function (): void {
+			AuthMiddleware::ensureAuthenticated();
+			RoleMiddleware::ensureRole(['admin']);
+			require __DIR__ . '/../app/views/admin/pages.php';
+		},
+		'/admin/users' => function (): void {
+			AuthMiddleware::ensureAuthenticated();
+			RoleMiddleware::ensureRole(['admin']);
+			require __DIR__ . '/../app/views/admin/users.php';
+		},
 	],
 	'POST' => [],
 ];

@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent-2);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

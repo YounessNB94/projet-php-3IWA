@@ -15,27 +15,27 @@ $userName = $_SESSION['user_name'] ?? 'Admin';
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    <nav>
-        <a href="/">Accueil</a> |
-        <a href="/pages">Pages</a> |
-        <a href="/admin">Admin</a>
-        <?php if ($isLoggedIn) : ?>
-            | <a href="/logout">Deconnexion</a>
-            <span style="float:right;">Connecte</span>
-        <?php else : ?>
-            | <a href="/login">Connexion</a>
-            | <a href="/register">Inscription</a>
-        <?php endif; ?>
-    </nav>
-    <hr>
-    <h1>Dashboard Admin</h1>
-    <p>Bienvenue, <?= htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') ?>.</p>
+<body class="theme-contrast">
+    <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <ul>
-        <li><a href="/pages">Gerer les pages</a></li>
-        <li><a href="/logout">Deconnexion</a></li>
-    </ul>
+    <main class="layout-container">
+        <section class="layout-hero">
+            <h1>Dashboard Admin</h1>
+            <p>Bienvenue, <?= htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') ?>.</p>
+        </section>
+
+        <section class="card">
+            <h2>Actions rapides</h2>
+            <div>
+                <a class="button button--primary" href="/pages">Gerer les pages</a>
+                <a class="button" href="/admin/pages">Tableau pages</a>
+                <a class="button" href="/admin/users">Tableau utilisateurs</a>
+                <a class="button" href="/logout">Deconnexion</a>
+            </div>
+        </section>
+    </main>
+    <script src="/js/app.js"></script>
 </body>
 </html>

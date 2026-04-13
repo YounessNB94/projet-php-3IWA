@@ -45,23 +45,28 @@ if ($handler === null) {
 		http_response_code(200);
 		echo '<!doctype html>';
 		echo '<html lang="fr">';
-		echo '<head><meta charset="utf-8"><title>CMS MVC</title></head>';
-		echo '<body>';
+		echo '<head><meta charset="utf-8"><title>CMS MVC</title>';
+		echo '<link rel="stylesheet" href="/css/main.css"></head>';
+		echo '<body class="theme-contrast">';
 		$isLoggedIn = !empty($_SESSION['user_id']);
-		echo '<nav>';
-		echo '<a href="/">Accueil</a> | ';
-		echo '<a href="/pages">Pages</a> | ';
-		echo '<a href="/admin">Admin</a> | ';
-		if ($isLoggedIn) {
-			echo '<a href="/logout">Deconnexion</a>';
-			echo '<span style="float:right;">Connecte</span>';
-		} else {
-			echo '<a href="/login">Connexion</a> | ';
-			echo '<a href="/register">Inscription</a>';
-		}
-		echo '</nav><hr>';
-		echo '<h1>Projet CMS MVC - OK</h1>';
-		echo '<p>Le routeur minimal est en place.</p>';
+		ob_start();
+		require __DIR__ . '/../app/views/partials/header.php';
+		echo ob_get_clean();
+		echo '<main class="layout-container">';
+		echo '<section class="layout-hero">';
+		echo '<h1>CMS MVC - Editorial</h1>';
+		echo '<p>Un espace sobre pour gerer et publier vos contenus.</p>';
+		echo '<div>'; 
+		echo '<a class="button button--primary" href="/pages">Explorer les pages</a> ';
+		echo '<a class="button" href="/styleguide">Voir le design guide</a>';
+		echo '</div>';
+		echo '</section>';
+		echo '<section class="card">';
+		echo '<h2>Pourquoi ce CMS ?</h2>';
+		echo '<p>Gestion simple des pages, roles clairs, interface legere pour un projet scolaire.</p>';
+		echo '</section>';
+		echo '</main>';
+		echo '<script src="/js/app.js"></script>';
 		echo '</body></html>';
 		exit;
 	}

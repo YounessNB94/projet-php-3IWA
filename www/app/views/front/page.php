@@ -15,26 +15,18 @@ $page = $page ?? [];
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($page['title'] ?? 'Page', ENT_QUOTES, 'UTF-8') ?></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    <nav>
-        <a href="/">Accueil</a> |
-        <a href="/pages">Pages</a> |
-        <a href="/admin">Admin</a>
-        <?php if ($isLoggedIn) : ?>
-            | <a href="/logout">Deconnexion</a>
-            <span style="float:right;">Connecte</span>
-        <?php else : ?>
-            | <a href="/login">Connexion</a>
-            | <a href="/register">Inscription</a>
-        <?php endif; ?>
-    </nav>
-    <hr>
-    <article>
-        <h1><?= htmlspecialchars($page['title'] ?? '', ENT_QUOTES, 'UTF-8') ?></h1>
-        <div>
-            <?= nl2br(htmlspecialchars($page['content'] ?? '', ENT_QUOTES, 'UTF-8')) ?>
-        </div>
-    </article>
+<body class="theme-contrast">
+    <?php require __DIR__ . '/../partials/header.php'; ?>
+    <main class="layout-container">
+        <article class="card">
+            <h1><?= htmlspecialchars($page['title'] ?? '', ENT_QUOTES, 'UTF-8') ?></h1>
+            <div>
+                <?= nl2br(htmlspecialchars($page['content'] ?? '', ENT_QUOTES, 'UTF-8')) ?>
+            </div>
+        </article>
+    </main>
+    <script src="/js/app.js"></script>
 </body>
 </html>

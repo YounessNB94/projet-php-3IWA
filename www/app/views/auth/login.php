@@ -16,22 +16,13 @@ $old = $old ?? [];
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-    <nav>
-        <a href="/">Accueil</a> |
-        <a href="/pages">Pages</a> |
-        <a href="/admin">Admin</a>
-        <?php if ($isLoggedIn) : ?>
-            | <a href="/logout">Deconnexion</a>
-            <span style="float:right;">Connecte</span>
-        <?php else : ?>
-            | <a href="/login">Connexion</a>
-            | <a href="/register">Inscription</a>
-        <?php endif; ?>
-    </nav>
-    <hr>
-    <h1>Connexion</h1>
+<body class="theme-contrast">
+    <?php require __DIR__ . '/../partials/header.php'; ?>
+    <main class="layout-container">
+        <section class="form-card">
+            <h1>Connexion</h1>
 
     <?php if (!empty($errors)) : ?>
         <ul>
@@ -41,16 +32,19 @@ $old = $old ?? [];
         </ul>
     <?php endif; ?>
 
-    <form method="post" action="/login">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
+        <form method="post" action="/login" class="form">
+            <label for="email">Email</label>
+            <input class="input" type="email" id="email" name="email" value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" required>
+            <label for="password">Mot de passe</label>
+            <input class="input" type="password" id="password" name="password" required>
 
-        <button type="submit">Se connecter</button>
-    </form>
+            <button class="button button--primary" type="submit">Se connecter</button>
+        </form>
 
-    <p><a href="/register">Creer un compte</a></p>
+        <p><a href="/register">Creer un compte</a></p>
+        </section>
+    </main>
+    <script src="/js/app.js"></script>
 </body>
 </html>
