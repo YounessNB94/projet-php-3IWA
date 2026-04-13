@@ -7,14 +7,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 $isLoggedIn = !empty($_SESSION['user_id']);
-$page = $page ?? [];
+$userName = $_SESSION['user_name'] ?? 'Admin';
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($page['title'] ?? 'Page', ENT_QUOTES, 'UTF-8') ?></title>
+    <title>Dashboard Admin</title>
 </head>
 <body>
     <nav>
@@ -30,11 +30,12 @@ $page = $page ?? [];
         <?php endif; ?>
     </nav>
     <hr>
-    <article>
-        <h1><?= htmlspecialchars($page['title'] ?? '', ENT_QUOTES, 'UTF-8') ?></h1>
-        <div>
-            <?= nl2br(htmlspecialchars($page['content'] ?? '', ENT_QUOTES, 'UTF-8')) ?>
-        </div>
-    </article>
+    <h1>Dashboard Admin</h1>
+    <p>Bienvenue, <?= htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') ?>.</p>
+
+    <ul>
+        <li><a href="/pages">Gerer les pages</a></li>
+        <li><a href="/logout">Deconnexion</a></li>
+    </ul>
 </body>
 </html>

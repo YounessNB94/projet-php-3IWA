@@ -2,7 +2,17 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../app/middleware/AuthMiddleware.php';
+require_once __DIR__ . '/../app/middleware/RoleMiddleware.php';
+require_once __DIR__ . '/../app/controllers/AdminController.php';
+
 return [
-	'GET' => [],
+	'GET' => [
+		'/admin' => function (): void {
+			AuthMiddleware::ensureAuthenticated();
+			RoleMiddleware::ensureRole(['admin']);
+			(new AdminController())->dashboard();
+		},
+	],
 	'POST' => [],
 ];

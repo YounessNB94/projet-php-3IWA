@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$isLoggedIn = !empty($_SESSION['user_id']);
 $errors = $errors ?? [];
 $old = $old ?? [];
 ?>
@@ -13,6 +18,19 @@ $old = $old ?? [];
     <title>Creer une page</title>
 </head>
 <body>
+    <nav>
+        <a href="/">Accueil</a> |
+        <a href="/pages">Pages</a> |
+        <a href="/admin">Admin</a>
+        <?php if ($isLoggedIn) : ?>
+            | <a href="/logout">Deconnexion</a>
+            <span style="float:right;">Connecte</span>
+        <?php else : ?>
+            | <a href="/login">Connexion</a>
+            | <a href="/register">Inscription</a>
+        <?php endif; ?>
+    </nav>
+    <hr>
     <h1>Creer une page</h1>
 
     <?php if (!empty($errors)) : ?>

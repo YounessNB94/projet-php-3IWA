@@ -43,6 +43,22 @@ if ($handler === null) {
 		echo '<html lang="fr">';
 		echo '<head><meta charset="utf-8"><title>CMS MVC</title></head>';
 		echo '<body>';
+		if (session_status() !== PHP_SESSION_ACTIVE) {
+			session_start();
+		}
+		$isLoggedIn = !empty($_SESSION['user_id']);
+		echo '<nav>';
+		echo '<a href="/">Accueil</a> | ';
+		echo '<a href="/pages">Pages</a> | ';
+		echo '<a href="/admin">Admin</a> | ';
+		if ($isLoggedIn) {
+			echo '<a href="/logout">Deconnexion</a>';
+			echo '<span style="float:right;">Connecte</span>';
+		} else {
+			echo '<a href="/login">Connexion</a> | ';
+			echo '<a href="/register">Inscription</a>';
+		}
+		echo '</nav><hr>';
 		echo '<h1>Projet CMS MVC - OK</h1>';
 		echo '<p>Le routeur minimal est en place.</p>';
 		echo '</body></html>';
