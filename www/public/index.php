@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+
 $routes = require __DIR__ . '/../routes/web.php';
 
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
@@ -43,9 +47,6 @@ if ($handler === null) {
 		echo '<html lang="fr">';
 		echo '<head><meta charset="utf-8"><title>CMS MVC</title></head>';
 		echo '<body>';
-		if (session_status() !== PHP_SESSION_ACTIVE) {
-			session_start();
-		}
 		$isLoggedIn = !empty($_SESSION['user_id']);
 		echo '<nav>';
 		echo '<a href="/">Accueil</a> | ';

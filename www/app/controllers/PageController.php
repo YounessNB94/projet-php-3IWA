@@ -19,6 +19,7 @@ class PageController
 
 	public function create(): void
 	{
+		AuthMiddleware::ensureAuthenticated();
 		$errors = [];
 		$old = [];
 		require __DIR__ . '/../views/pages/create.php';
@@ -26,6 +27,7 @@ class PageController
 
 	public function store(): void
 	{
+		AuthMiddleware::ensureAuthenticated();
 		$title = trim($_POST['title'] ?? '');
 		$content = trim($_POST['content'] ?? '');
 		$status = $_POST['status'] ?? 'draft';
@@ -68,6 +70,7 @@ class PageController
 
 	public function edit(int $id): void
 	{
+		AuthMiddleware::ensureAuthenticated();
 		$page = $this->pageModel->findById($id);
 		if (!$page) {
 			http_response_code(404);
@@ -81,6 +84,7 @@ class PageController
 
 	public function update(int $id): void
 	{
+		AuthMiddleware::ensureAuthenticated();
 		$page = $this->pageModel->findById($id);
 		if (!$page) {
 			http_response_code(404);
@@ -127,6 +131,7 @@ class PageController
 
 	public function delete(int $id): void
 	{
+		AuthMiddleware::ensureAuthenticated();
 		$this->pageModel->delete($id);
 		header('Location: /pages');
 		exit;

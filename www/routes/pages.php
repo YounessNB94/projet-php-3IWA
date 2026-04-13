@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../app/models/Database.php';
 require_once __DIR__ . '/../app/models/Page.php';
 require_once __DIR__ . '/../app/controllers/PageController.php';
+require_once __DIR__ . '/../app/middleware/AuthMiddleware.php';
 
 return [
 	'GET' => [
