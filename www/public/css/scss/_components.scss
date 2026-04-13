@@ -5,15 +5,11 @@
   align-items: center;
 }
 
-.nav__left,
-.nav__right {
-  display: inline-flex;
+.nav__panel {
+  display: flex;
   align-items: center;
   gap: var(--space-3);
-}
-
-.nav__right {
-  margin-left: auto;
+  width: 100%;
 }
 
 .nav-shell {
@@ -41,6 +37,13 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+}
+
+.nav__right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
 }
 
 .nav__auth {
@@ -249,15 +252,12 @@ thead th {
     align-items: flex-start;
   }
 
-  .nav__right {
-    margin-left: 0;
-  }
-
   .nav__toggle {
     display: inline-flex;
   }
 
-  .nav__links {
+
+  .nav__panel {
     display: none;
     position: fixed;
     inset: 0;
@@ -267,14 +267,18 @@ thead th {
     justify-content: center;
     gap: var(--space-4);
     z-index: 10;
+    padding: var(--space-6) var(--space-4);
   }
 
+  .nav__links,
+  .nav__right,
   .nav__auth {
     flex-direction: column;
     align-items: center;
+    margin-left: 0;
   }
 
-  .nav__links.is-open {
+  .nav__panel.is-open {
     display: flex;
   }
 
